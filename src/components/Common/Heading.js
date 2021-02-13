@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Star from "./Star";
 import Icon from "./Icon";
+import BookingModal from "./BookingModal";
 
 const Heading = ({ place, className }) => {
+    const [showBookingModal, setShowBookingModal] = useState(false);
+    const closeBookingModal = () => {
+        setShowBookingModal(false);
+    };
     const {
         name,
         rating,
@@ -12,8 +17,10 @@ const Heading = ({ place, className }) => {
         closeTime,
         availability,
         coordinates,
+        bookingDetails,
+        reviews,
     } = place;
-    const numReviews = place.reviews.length;
+    const numReviews = reviews.length;
 
     const difficultyStyle = {
         easy: "text-green-500 border-green-500",
@@ -78,12 +85,12 @@ const Heading = ({ place, className }) => {
                 )}
             </div>
 
-            <div className="grid grid-cols-2 grid-rows-1 gap-4 md:gap-12 pt-2 md:pt-4">
+            <div className="grid grid-cols-2 grid-rows-1 gap-4 md:gap-12 pt-2 md:pt-4 pb-6">
                 <a
                     href={`https://maps.google.com/?q=${coordinates.lat},${coordinates.lon}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex py-2 items-center justify-center rounded-full border border-black">
+                    className="flex font-medium py-2 items-center justify-center rounded-full border border-black">
                     <span className="text-center">Open In Maps</span>
                     <Icon
                         name="upRight"
@@ -93,6 +100,21 @@ const Heading = ({ place, className }) => {
                         color="black"
                     />
                 </a>
+                {bookingDetails && (
+                    <>
+                        <button
+                            onClick={() => setShowBookingModal(true)}
+                            className="flex font-medium py-2 items-center justify-center rounded-full border border-black bg-black text-white">
+                            <span className="text-center">Book</span>
+                        </button>
+                        {showBookingModal && (
+                            <BookingModal
+                                onClose={closeBookingModal}
+                                details={bookingDetails}
+                            />
+                        )}
+                    </>
+                )}
             </div>
         </div>
     );

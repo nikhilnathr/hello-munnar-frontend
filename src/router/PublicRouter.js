@@ -11,6 +11,7 @@ import SignIn from "../components/User/SignIn";
 import SignOut from "../components/User/SignOut";
 import Profile from "../components/User/Profile";
 import RouteRouter from "./RouteRouter";
+import Activity from "../components/Activity";
 
 const routes = {
     // Explore page is the temporary default home page
@@ -21,6 +22,7 @@ const routes = {
     "/profile": () => <Profile />,
     "/destination/:id": ({ id }) => <Destination id={id} />,
     "/experience/:id": ({ id }) => <Experience id={id} />,
+    "/activity/:id": ({ id }) => <Activity id={id} />,
     "/notifications": () => <Notification />,
     "/experiences": () => <Experiences />,
 
@@ -30,7 +32,6 @@ const routes = {
 
 export default function PublicRouter() {
     const pagesToShowNavBar = ["/", "/favorites", "/nearme", "/experiences"];
-    console.log(window.location.pathname);
     const pages = useRoutes(routes);
     return pagesToShowNavBar.includes(window.location.pathname) ? (
         <div className="w-screen flex flex-col min-h-screen pb-20">

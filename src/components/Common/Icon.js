@@ -40,6 +40,8 @@ import { ReactComponent as Available } from "../../assets/images/available.svg";
 import { ReactComponent as Avatar } from "../../assets/images/avatar.svg";
 import { ReactComponent as Edit } from "../../assets/images/edit.svg";
 import { ReactComponent as UpRight } from "../../assets/images/up-right.svg";
+import { ReactComponent as OutsideLink } from "../../assets/images/outside-link.svg";
+import { ReactComponent as HotelUser } from "../../assets/images/hotel-user.svg";
 
 const icons = {
     nearMe: NearMe,
@@ -83,6 +85,8 @@ const icons = {
     avatar: Avatar,
     edit: Edit,
     upRight: UpRight,
+    outsideLink: OutsideLink,
+    hotelUser: HotelUser,
 };
 
 export default function Icon({
